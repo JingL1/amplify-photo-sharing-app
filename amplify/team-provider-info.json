@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rpclizardspock-dev-224756-authRole",
+      "UnauthRoleArn": "arn:aws:iam::535318837761:role/amplify-rpclizardspock-dev-224756-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::535318837761:role/amplify-rpclizardspock-dev-224756-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-rpclizardspock-dev-224756-deployment",
+      "UnauthRoleName": "amplify-rpclizardspock-dev-224756-unauthRole",
+      "StackName": "amplify-rpclizardspock-dev-224756",
+      "StackId": "arn:aws:cloudformation:us-west-2:535318837761:stack/amplify-rpclizardspock-dev-224756/ac26f470-fa3b-11ea-b975-0a6cd3fa4352",
+      "AmplifyAppId": "d2g2mhxwxnnfti"
+    },
+    "categories": {
+      "auth": {
+        "rpclizardspock5de3997b": {}
+      }
+    }
+  }
+}
