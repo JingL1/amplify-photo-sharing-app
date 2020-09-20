@@ -58,7 +58,13 @@ function App() {
   }, []);
   async function fetchPosts() {
     try {
-      const postData = await API.graphql({ query: listPosts });
+      const postData = await API.graphql({
+        mutation: createPost,
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+        variables: {
+          input: postInfo
+        }
+      });
       setPosts(postData.data.listPosts.items)
     } catch (err) {
       console.log({ err })
@@ -94,6 +100,7 @@ function Router() {
   /* create a couple of pieces of initial state */
   const [showOverlay, updateOverlayVisibility] = useState(false);
   const [posts, updatePosts] = useState([]);
+  const [myPosts, updateMyPosts] = useState([]);
 
   /* fetch posts when component loads */
   useEffect(() => {
@@ -112,9 +119,14 @@ function Router() {
     /* update the posts array in the local state */
     setPostState(postsArray);
   }
+
   async function setPostState(postsArray) {
+    const user = await Auth.currentAuthenticatedUser();
+    const myPostData = postsArray.filter(p => p.owner === user.username);
+    updateMyPosts(myPostData);
     updatePosts(postsArray);
   }
+
   return (
     <>
       <HashRouter>
@@ -128,6 +140,9 @@ function Router() {
               </Route>
               <Route path="/post/:id" >
                 <Post />
+              </Route>
+              <Route exact path="/myposts" >
+                <Posts posts={myPosts} />
               </Route>
             </Switch>
           </div>

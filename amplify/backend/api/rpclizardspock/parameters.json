@@ -1,5 +1,11 @@
 {
     "AppSyncApiName": "rpclizardspock",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": false
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authrpclizardspock5de3997b",
+            "Outputs.UserPoolId"
+        ]
+    }
 }
