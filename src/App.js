@@ -1,39 +1,6 @@
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-//
-// export default App;
-
-
-// src/App.js
 import React, { useState, useEffect } from 'react';
-
-// import API from Amplify library
 import { API, Auth, Storage } from 'aws-amplify'
-
-
-// src/App.js, import the withAuthenticator component
 import { withAuthenticator,  AmplifySignOut } from '@aws-amplify/ui-react'
 
 import {
@@ -48,53 +15,6 @@ import Post from './Post';
 import Header from './Header';
 import CreatePost from './CreatePost';
 import Button from './Button';
-
-
-function App() {
-  const [posts, setPosts] = useState([])
-  useEffect(() => {
-    fetchPosts();
-    checkUser(); // new function call
-  }, []);
-  async function fetchPosts() {
-    try {
-      const postData = await API.graphql({
-        mutation: createPost,
-        authMode: 'AMAZON_COGNITO_USER_POOLS',
-        variables: {
-          input: postInfo
-        }
-      });
-      setPosts(postData.data.listPosts.items)
-    } catch (err) {
-      console.log({ err })
-    }
-  }
-  async function checkUser() {
-    const user = await Auth.currentAuthenticatedUser();
-    console.log('user: ', user);
-    console.log('user attributes: ', user.attributes);
-  }
-  return (
-    <div>
-      <h1>Hello World</h1>
-      {
-        posts.map(post => (
-          <div key={post.id}>
-            <h3>{post.name}</h3>
-            <p>{post.location}</p>
-          </div>
-        ))
-      }
-    </div>
-  )
-}
-
-/* src/App.js, change the default export to this: */
-//export default withAuthenticator(App)
-
-
-
 
 function Router() {
   /* create a couple of pieces of initial state */
